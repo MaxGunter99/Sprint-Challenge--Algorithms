@@ -1,3 +1,7 @@
+import os
+import random
+os.system( 'clear' )
+
 class SortingRobot:
     def __init__(self, l):
         """
@@ -98,6 +102,46 @@ class SortingRobot:
         """
         # Fill this out
         
+        print( f'Robot it holding: { self._item }' )
+        print( self._list )
+
+        if self._item == None:
+            self.swap_item()
+            self.move_right()
+
+        count = 0
+
+        while count < 2000:  
+
+            while self.can_move_right():
+
+                if self.compare_item() == -1:
+                    self.swap_item()
+                    self.move_right()
+                else:
+                    self.move_right()
+
+            while self.can_move_left():
+
+                if self.compare_item() == 1:
+                    count += 1
+                    self.swap_item()
+                    self.move_left()
+
+                else:
+                    self.move_left()
+
+
+            os.system( 'clear' )
+            print( f'Robot it holding: { self._item }' , count )
+            # print( l )
+
+
+        if self._item <= 100:
+            self.swap_item()
+
+        return self._list
+
 
 
 if __name__ == "__main__":
